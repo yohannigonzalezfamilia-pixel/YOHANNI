@@ -1,0 +1,123 @@
+body {
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg, #8B00FF, #4B0082); /* Degradado púrpura galáctico */
+margin: 0;
+padding: 20px;
+color: white;
+min-height: 100vh;
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+header {
+text-align: center;
+margin-bottom: 20px;
+}
+
+h1 {
+font-size: 2.5em;
+background: linear-gradient(45deg, #FF69B4, #FFD700); /* Glow rosa-dorado */
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 0 0 10px rgba(255, 105, 180, 0.5); /* Efecto neón */
+margin: 0;
+}
+
+h2, h3 {
+color: #FFD700; /* Dorado galáctico */
+text-align: center;
+}
+
+input, textarea {
+padding: 10px;
+width: 100%;
+max-width: 400px;
+margin: 10px auto;
+display: block;
+border: 2px solid #FF69B4; /* Borde rosa */
+border-radius: 10px;
+font-size: 16px;
+background: rgba(255, 255, 255, 0.9);
+}
+
+textarea {
+height: 100px;
+resize: vertical;
+}
+
+/* Grid columnar */
+.grid-container {
+display: grid;
+grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+gap: 20px;
+margin-bottom: 30px;
+}
+
+.tips-section, .favorites-section {
+background: rgba(255, 255, 255, 0.1);
+padding: 20px;
+border-radius: 15px;
+backdrop-filter: blur(10px); /* Efecto glassmorphism galáctico */
+border: 1px solid rgba(255, 105, 180, 0.3);
+}
+
+.tip, .favorite-item {
+background: rgba(255, 255, 255, 0.2);
+border: 1px solid #FF69B4;
+padding: 15px;
+margin: 10px 0;
+border-radius: 10px;
+text-align: left;
+}
+
+.tip button, form button {
+background: linear-gradient(45deg, #FF69B4, #FFD700);
+color: white;
+border: none;
+padding: 8px 15px;
+border-radius: 5px;
+cursor: pointer;
+margin-top: 5px;
+}
+
+.tip button:hover, form button:hover {
+box-shadow: 0 0 10px #FF69B4;
+}
+
+.shared-tip {
+background: rgba(255, 215, 0, 0.2);
+padding: 10px;
+margin: 5px 0;
+border-radius: 5px;
+text-align: left;
+border-left: 3px solid #FFD700;
+}
+
+ul {
+list-style: none;
+padding: 0;
+}
+
+footer {
+text-align: center;
+margin-top: 30px;
+color: #FFD700;
+font-size: 0.9em;
+}
+
+/* Responsivo: En móviles, columnas apiladas */
+@media (max-width: 768px) {
+.grid-container {
+grid-template-columns: 1fr; /* Una columna en móvil */
+}
+h1 {
+font-size: 2em;
+}
+input, textarea {
+width: 90%;
+}
+}

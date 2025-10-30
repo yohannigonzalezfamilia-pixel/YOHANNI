@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlowUp Galáctico</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+--neon-cyan: #00f7ff;
+--neon-pink: #ff00ff;
+--dark-bg: #0a0a1a;
+--card-bg: rgba(20, 20, 40, 0.7);
+--text: #e0e0ff;
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Poppins', sans-serif;
+background: linear-gradient(135deg, #0a0a1a, #1a1a3e);
+color: var(--text);
+min-height: 100vh;
+padding: 2rem;
+background-image:
+radial-gradient(circle at 20% 80%, rgba(0, 247, 255, 0.1) 0%, transparent 50%),
+radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+}
+
+header {
+text-align: center;
+margin-bottom: 2rem;
+animation: float 6s ease-in-out infinite;
+}
+
+h1 {
+font-family: 'Orbitron', sans-serif;
+font-size: 3rem;
+color: var(--neon-cyan);
+text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-pink);
+letter-spacing: 2px;
+}
+
+h1 span {
+color: var(--neon-pink);
+font-size: 1.8rem;
+display: block;
+margin-top: 0.5rem;
+font-family: 'Poppins', sans-serif;
+text-shadow: none;
+}
+
+/* BARRA DE BÚSQUEDA CON FONDO NEGRO */
+.search-bar {
+max-width: 500px;
+margin: 1.5rem auto;
+position: relative;
+}
+
+.search-bar input {
+width: 100%;
+padding: 1rem 1.5rem;
+border: 2px solid var(--neon-cyan);
+border-radius: 50px;
+background: #000000; /* FONDO NEGRO */
+color: white;
+font-size: 1rem;
+backdrop-filter: blur(10px);
+transition: all 0.3s;
+}
+
+.search-bar input:focus {
+outline: none;
+border-color: var(--neon-pink);
+box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+}
+
+.search-bar::before {
+content: "Search";
+position: absolute;
+right: 1.5rem;
+top: 50%;
+transform: translateY(-50%);
+color: var(--neon-cyan);
+}
+
+.container {
+max-width: 800px;
+margin: 0 auto;
+}
+
+h2 {
+text-align: center;
+margin: 2rem 0 1.5rem;
+color: var(--neon-cyan);
+font-size: 1.8rem;
+text-shadow: 0 0 8px var(--neon-cyan);
+}
+
+.consejo {
+background: var(--card-bg);
+border: 1px solid rgba(0, 247, 255, 0.3);
+border-radius: 15px;
+padding: 1.5rem;
+margin-bottom: 1.5rem;
+backdrop-filter: blur(10px);
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+transition: all 0.3s;
+}
+
+.consejo:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px rgba(0, 247, 255, 0.2);
+border-color: var(--neon-pink);
+}
+
+.consejo h3 {
+color: var(--neon-pink);
+margin-bottom: 0.8rem;
+font-size: 1.4rem;
+font-weight: 600;
+}
+
+.consejo p {
+margin-bottom: 0.8rem;
+line-height: 1.6;
+color: #ccc;
+}
+
+.favorito-btn {
+background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink));
+color: rgb(0, 0, 0);
+border: none;
+padding: 0.6rem 1.2rem;
+border-radius: 50px;
+font-size: 0.9rem;
+cursor: pointer;
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+transition: all 0.3s;
+margin-top: 0.5rem;
+}
+
+.favorito-btn:hover {
+transform: scale(1.05);
+box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
+}
+
+.favorito-btn.favorited {
+background: #00ff88;
+animation: pulse 0.6s;
+}
+
+/* FORMULARIO: "¿CÓMO CUIDAS TU PIEL?" */
+.form-section {
+background: rgba(255, 255, 255, 0.05);
+border-radius: 15px;
+padding: 2rem;
+margin: 2rem auto;
+max-width: 600px;
+border: 1px solid var(--neon-cyan);
+box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+}
+
+.form-section h3 {
+color: var(--neon-pink);
+text-align: center;
+margin-bottom: 1.5rem;
+font-size: 1.5rem;
+}
+
+.form-group {
+margin-bottom: 1rem;
+}
+
+.form-group label {
+display: block;
+color: var(--neon-cyan);
+margin-bottom: 0.5rem;
+font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+width: 100%;
+padding: 0.8rem;
+border: 1px solid var(--neon-cyan);
+border-radius: 8px;
+background: rgba(255, 255, 255, 0.1);
+color: rgb(0, 0, 0);
+font-size: 1rem;
+transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+outline: none;
+border-color: var(--neon-pink);
+box-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
+}
+
+.submit-btn {
+background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink));
+color: rgb(8, 8, 8);
+border: none;
+padding: 1rem 2rem;
+border-radius: 50px;
+font-size: 1.1rem;
+cursor: pointer;
+width: 100%;
+margin-top: 1rem;
+transition: all 0.3s;
+}
+
+.submit-btn:hover {
+transform: scale(1.02);
+box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+}
+
+.mensaje-exito {
+text-align: center;
+color: #00ff88;
+margin-top: 1rem;
+font-weight: bold;
+animation: fadeIn 0.5s;
+}
+
+@keyframes float {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.1); }
+100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+footer {
+text-align: center;
+margin-top: 3rem;
+padding: 2rem;
+color: #666;
+font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+h1 { font-size: 2rem; }
+.consejo, .form-section { padding: 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>GlowUp Galáctico <span>YOHA</span></h1>
+<p>Consejos para brillar como una estrella</p>
+</header>
+
+<div class="search-bar">
+<input type="text" placeholder="Busca por categoría (ej. Piel, Maquillaje...)" id="searchInput">
+</div>
+
+<div class="container">
+<h2>Consejos Galácticos</h2>
+
+<!-- Consejos predefinidos -->
+<div class="consejo" data-category="piel">
+<h3>Piel grasa</h3>
+<p><strong>Consejo:</strong> Usa limpiadores en gel para controlar el sebo.</p>
+<p>Prueba mascarillas de arcilla 1-2 veces por semana.</p>
+<button class="favorito-btn" onclick="toggleFavorito(this)">Agregar a Favoritos Star</button>
+</div>
+
+<div class="consejo" data-category="piel">
+<h3>Piel seca</h3>
+<p><strong>Consejo:</strong> Hidrata con cremas con ácido hialurónico.</p>
+<p>Aplica protector solar diario.</p>
+<button class="favorito-btn" onclick="toggleFavorito(this)">Agregar a Favoritos Star</button>
+</div>
+
+<div class="consejo" data-category="maquillaje">
+<h3>Maquillaje natural</h3>
+<p><strong>Consejo:</strong> Usa una BB cream ligera para un look fresco.</p>
+<p>Combina con un gloss transparente.</p>
+<button class="favorito-btn" onclick="toggleFavorito(this)">Agregar a Favoritos Star</button>
+</div>
+
+<div class="consejo" data-category="autoestima">
+<h3>Autoestima</h3>
+<p><strong>Consejo:</strong> Tu belleza interior brilla tanto como la exterior.</p>
+<p>Escribe algo que ames de ti cada día.</p>
+<button class="favorito-btn" onclick="toggleFavorito(this)">Agregar a Favoritos Star</button>
+</div>
+
+<div class="consejo" data-category="cabello">
+<h3>Cuidado de cabello</h3>
+<p><strong>Consejo:</strong> Usa aceites naturales como argán.</p>
+<p>Aplica en puntas para hidratar.</p>
+<button class="favorito-btn" onclick="toggleFavorito(this)">Agregar a Favoritos Star</button>
+</div>
+
+<!-- Aquí se agregan los nuevos consejos -->
+<div id="nuevos-consejos"></div>
+</div>
+
+<!-- FORMULARIO: "¿CÓMO CUIDAS TU PIEL?" -->
+<div class="form-section">
+<h3>¿Cómo cuidas tu piel?</h3>
+<form id="consejo-form">
+<div class="form-group">
+<label for="titulo">Título del consejo</label>
+<input type="text" id="titulo" placeholder="Ej: Piel mixta" required>
+</div>
+<div class="form-group">
+<label for="categoria">Categoría</label>
+<select id="categoria" required>
+<option value="">Selecciona una</option>
+<option value="piel">Piel</option>
+<option value="maquillaje">Maquillaje</option>
+<option value="cabello">Cabello</option>
+<option value="autoestima">Autoestima</option>
+<option value="otro">Otro</option>
+</select>
+</div>
+<div class="form-group">
+<label for="consejo1">Consejo principal</label>
+<textarea id="consejo1" rows="2" placeholder="Ej: Bebo 2 litros de agua al día..." required></textarea>
+</div>
+<div class="form-group">
+<label for="consejo2">Consejo extra (opcional)</label>
+<textarea id="consejo2" rows="2" placeholder="Ej: Uso crema con vitamina C..."></textarea>
+</div>
+<button type="submit" class="submit-btn">Enviar</button>
+</form>
+<div id="mensaje-form"></div>
+</div>
+
+<footer>
+<p>Hecho con amor cósmico por <strong>YOHANNI</strong></p>
+</footer>
+
+<script>
+// Búsqueda en tiempo real
+document.getElementById('searchInput').addEventListener('input', function() {
+const query = this.value.toLowerCase();
+const consejos = document.querySelectorAll('.consejo');
+
+consejos.forEach(consejo => {
+const categoria = consejo.getAttribute('data-category') || '';
+const texto = consejo.textContent.toLowerCase();
+if (texto.includes(query) || categoria.includes(query)) {
+consejo.style.display = 'block';
+} else {
+consejo.style.display = 'none';
+}
+});
+});
+
+// Favoritos
+function toggleFavorito(btn) {
+btn.classList.toggle('favorited');
+if (btn.classList.contains('favorited')) {
+btn.innerHTML = '¡En Favoritos! Checkmark';
+} else {
+btn.innerHTML = 'Agregar a Favoritos Star';
+}
+}
+
+// Formulario: Agregar nuevo consejo
+document.getElementById('consejo-form').addEventListener('submit', function(e) {
+e.preventDefault();
+
+const titulo = document.getElementById('titulo').value.trim();
+const categoria = document.getElementById('categoria').value;
+const consejo1 = document.getElementById('consejo1').value.trim();
+const consejo2 = document.getElementById('consejo2').value.trim();
+
+if (!titulo || !categoria || !consejo1) {
+document.getElementById('mensaje-form').innerHTML = '<p style="color:#ff4d4d;">Completa los campos obligatorios</p>';
+return;
+}
+
+const nuevoConsejo = document.createElement('div');
+nuevoConsejo.className = 'consejo';
+nuevoConsejo.setAttribute('data-category', categoria);
+
+let html = `<h3>${titulo}</h3>`;
+html += `<p><strong>Consejo:</strong> ${consejo1}</p>`;
+if (consejo2) html += `<p>${consejo2}</p>`;
+html += `<button class="favorito-btn" onclick="toggleFavorito(this)">Agregar a Favoritos Star</button>`;
+
+nuevoConsejo.innerHTML = html;
+document.getElementById('nuevos-consejos').appendChild(nuevoConsejo);
+
+document.getElementById('mensaje-form').innerHTML = '<p class="mensaje-exito">¡Consejo enviado a YOHA!</p>';
+
+this.reset();
+nuevoConsejo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+</script>
+</body>
+</html>
